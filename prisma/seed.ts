@@ -39,6 +39,13 @@ Isn't it great?
 ];
 
 async function seed() {
+  await prisma.user.create({
+    data: {
+      username: 'johnny@phaeknjus.xyz',
+      passwordHash:
+        '$2a$10$lJ9mmSfU4giK2SVcj0iHD.uvlS.PhNdGqxqITQXp0gy.o/KJt3iCy',
+    },
+  });
   for (const post of posts) {
     await prisma.post.upsert({
       where: { slug: post.slug },
