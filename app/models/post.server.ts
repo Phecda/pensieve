@@ -1,9 +1,9 @@
-import { prisma } from '~/utils/db.server';
+import { db } from '~/utils/db.server';
 
 export async function getPosts() {
-  return prisma.post.findMany();
+  return db.post.findMany();
 }
 
 export async function getPost(slug: string) {
-  return prisma.post.findUnique({ where: { slug } });
+  return db.post.findUnique({ where: { slug } });
 }
