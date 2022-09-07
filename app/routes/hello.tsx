@@ -1,4 +1,4 @@
-import type { ActionFunction } from '@remix-run/node';
+import type { ActionArgs } from '@remix-run/node';
 import { Form, useActionData, useSearchParams } from '@remix-run/react';
 import { createUserSession, login } from '~/services/auth.server';
 import { badRequest } from '~/utils/response.server';
@@ -36,7 +36,7 @@ type ActionData = {
   };
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();
   const username = form.get('username');
   const password = form.get('password');
@@ -67,7 +67,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function HelloPage() {
-  const actionData = useActionData<ActionData>();
+  const actionData = useActionData<typeof action>();
   const [searchParams] = useSearchParams();
 
   return (
